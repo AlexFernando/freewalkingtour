@@ -8,39 +8,26 @@ import Loading from './Loading';
 //icons
 import { IconContext } from "react-icons";
 import { BsFillArrowDownCircleFill} from 'react-icons/bs';
-import { AiFillClockCircle } from 'react-icons/ai';
-import {BiMoney} from 'react-icons/bi';
-
-import Script from "@frontity/components/script";
-
-import dircetur from "../../src/images/dircetur_1.png"
-import greenTourism from "../../src/images/green_tourism_1.png"
-import marcaPeru from "../../src/images/maeca_peru_1.png"
-import promperu from "../../src/images/promeperu.png"
-import trip from "../../src/images/trip.png"
-
-// const MyComponent = () => (
-//     <Script src="https://apps.elfsight.com/p/platform.js" defer />
-// );
-
-
-
+import ReadMore from '../helpers/ReadMore';
+import LinkMoreInfo from './LinkMoreInfo'
 
 const Home = ({state, actions, libraries}) => {
 
-    useEffect( () => {
-        actions.source.fetch("/hometours")
-    }, [])
-
-    const data = state.source.get('/hometours');
+    useEffect(() => {
+        actions.source.fetch("/category/hometour/");
+        actions.source.fetch("/category/freetourhome/");
+        actions.source.fetch("/homepage/");
+    }, []);
     
+    const data = state.source.get("/category/hometour/");
+    const dataFreeTour = state.source.get("/category/freetourhome/");
 
+    const pageHomeData = state.source.page[10];
 
     return ( 
-        <>           
-        
-                <>      
-                           
+        <>     
+                {typeof pageHomeData === "undefined" ? <Loading /> :     
+                <>
                     <ContainerBackground>
 
                         <picture>
@@ -49,7 +36,7 @@ const Home = ({state, actions, libraries}) => {
                             <source media="(max-width: 2048px)" srcSet="https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled.jpg" />
 
                             <ImageTag
-                                src="https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled.jpg" alt="background cover"
+                                src="https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled-768x471.jpg" alt="background cover" width="1800" height="1103"
                             />
                         </picture>
 
@@ -110,95 +97,168 @@ const Home = ({state, actions, libraries}) => {
                             
                             <CardAndTripAdvisor>
 
-                                <FreeTourCard>
-                                    <ContainerImage>
-                                        <ImageTourStyled src={trip} />
-                                    </ContainerImage>
+                                {
+                                    dataFreeTour.isCategory && data.isReady ? 
 
-                                    <InfoFreeTour>
-                                        <h3>Free Walking Tour in Cusco</h3>
+                                        dataFreeTour.items.map( ({type, id}) => {
 
-                                        <div>
-                                            <span>
-                                                <IconContext.Provider value={{ color: "#FF4500", className: "global-class-name", size: "1rem" } }>
-                                                    <AiFillClockCircle />   2 - 2.5h 
-                                                </IconContext.Provider>
-                                            </span>
+                                            const singleTour = state.source[type][id];
+                                                
+                                            return (
+                                                <Link href={singleTour.link}>
+                                                    <FreeTourCard>
+                                                        
+                                                            <ContainerImage>
+                                                                <picture>
+                                                                    <source media="(max-width: 799px)" srcSet={singleTour.acf.image_card.sizes.medium} />
+                                                                    <source media="(min-width: 800px)" srcSet={singleTour.acf.image_card.sizes.medium_large} />
+                                                                    <ImageTourStyled src={singleTour.acf.image_card.sizes.medium} alt="hometour" />
+                                                                </picture>
+                                                            </ContainerImage>
+            
+                                                            <InfoHomeTour>
+                                                                <span>{singleTour.acf.price}</span>
+                                                                <h3>{singleTour.acf.title}</h3>
+                                                                <ul>
+                                                                    <li>First Turn: 10:00 am</li>
+                                                                    <li>Second Turn: 12:30 pm</li>
+                                                                    <li>Third Turn: 03:00 pm</li>
+                                                                </ul> 
 
-                                            <span>
-                                                <IconContext.Provider value={{ color: "#FF4500", className: "global-class-name", size: "1rem" } }>
-                                                    <BiMoney /> Free
-                                                </IconContext.Provider>
-                                            </span>
-                                        </div>  
+                                                                <LastInfo>
+                                                                    <p>English, Spanish</p>
+                                                                    <LinkMoreInfo href={singleTour.link}>+ Info</LinkMoreInfo>
+                                                                </LastInfo>
+                                                            </InfoHomeTour>
+                                                    
+                                                    </FreeTourCard>
+                                                </Link>
+                                            )
+                                        })
+                                
+                                    :null
+                                          
+                                }
 
-                                        <p>Our Walking Tours are historical and cultural focused, our licensed guides are prepared to give you important information and facts about our ancestral city ...</p>
-                                        
-                                    </InfoFreeTour>
+                                <DonationBase>
 
-                                </FreeTourCard>
+                                    <h3>Donation Base</h3>
+                                    <p>
+                                        It's completely free to book, once the tour is done, 
+                                        you can leave your generous and personal donation, 
+                                        that will help us to continue with our work.
+                                    </p>
+                                </DonationBase>
 
-                             
+                                <TripAdvisorCard> 
+                                    <div>
+                                        <p><a href="https://www.tripadvisor.com/Attraction_Review-g294314-d12493345-Reviews-Wild_Free_Walking_Tour_Cusco-Cusco_Cusco_Region.html">Check Our Reviews</a></p>   
+                                    </div>                                     
+                                    
+                                    <ImageReviewBox alt="tripadvisor_reviews" width={Math.floor(pageHomeData.acf.images_group.tripadvisor_reviews.sizes["medium-width"]/2)} height={Math.floor(pageHomeData.acf.images_group.tripadvisor_reviews.sizes["medium-height"]/2)} src={pageHomeData.acf.images_group.tripadvisor_reviews.sizes.medium}/>
+                                </TripAdvisorCard>
                             </CardAndTripAdvisor>
                         </FreeTourContainer>
                         
-                        
-                        <ToursHomeWrap>
-                        {
-                            data.isReady ?
+                        <WriteReviewBox>
+                            <LeftSideBox>
+                                <span>
+                                    <ImageReviewBox alt="tripadvisor_reviews" width={Math.floor(pageHomeData.acf.images_group.tripadvisor_reviews.sizes["medium-width"]/2)} height={Math.floor(pageHomeData.acf.images_group.tripadvisor_reviews.sizes["medium-height"]/2)} src={pageHomeData.acf.images_group.tripadvisor_reviews.sizes.medium}/>
+                                    <p>Rating</p>
+                                </span>
 
-                                data.items.map( ({id}) => {
+                                <MyStars>
+                                    <h3>5.0</h3>
+                                    <span>
+                                        ★★★★★
+                                    </span>
+                                </MyStars>
+ 
+                            </LeftSideBox>
+                            <ButtonWriteReview href="https://www.tripadvisor.com.pe/UserReviewEdit-g294314-d12493345-Wild_Free_Walking_Tour_Cusco-Cusco_Cusco_Region.html" target="_blank">Write a Review</ButtonWriteReview>
+                        </WriteReviewBox>
 
-                                    const singleTour = state.source.hometours[id];
-                                        
-                                    return (
-                                        <TourHomeItem>
-                                            <Link href={singleTour.link}>
-                                          
-                                                <picture>
-                                                    <source media="(max-width: 799px)" srcSet={singleTour.acf.image.sizes.medium} />
-                                                    <source media="(min-width: 800px)" srcSet={singleTour.acf.image.sizes.medium_large} />
-                                                    <ImageTourCard src={singleTour.acf.image.sizes.medium} alt="hometour" />
-                                                </picture>
+                        <TripAdvisorReviews>
+                            {
+                                Object.keys(pageHomeData.acf.testimonials).map( item => {
 
-                                                <InfoHomeTour>
-                                                    <span>{singleTour.acf.price}</span>
-                                                    <h3>{singleTour.acf.title}</h3>
-                                                    <p>English, Spanish</p>      
-                                                </InfoHomeTour>
-                                            </Link>
-                                        </TourHomeItem>
+                                    return(
+                                        <ReviewItem>
+                                            <h4>{pageHomeData.acf.testimonials[item].client_name}</h4>
+                                            <div>
+                                            <span>★★★★★</span>
+                                            <span>{pageHomeData.acf.testimonials[item].days_ago}</span>
+                                            </div>
+
+                                            <h3>{pageHomeData.acf.testimonials[item].title}</h3>
+                                            <ReadMore content= {pageHomeData.acf.testimonials[item].comment_description} limit={60} />
+
+                                        </ReviewItem>
                                     )
+                                   
                                 })
+
+                            }
                             
-                            :null
-                        }
-                        </ToursHomeWrap>
+                        </TripAdvisorReviews>
+                        
+                        <ContainerToursHome>
+                            <h2>Tours Mas Populares</h2>
+                      
+                            <ToursHomeWrap>
+                            {
+                                data.isCategory && data.isReady ?
+
+                                    data.items.map( ({type, id}) => {
+
+                                        const singleTour = state.source[type][id];
+                                            
+                                        return (
+                                            <TourHomeItem>
+                                                <Link href={singleTour.link}>
+                                            
+                                                    <picture>
+                                                        <source media="(max-width: 799px)" srcSet={singleTour.acf.image_card.sizes.medium} />
+                                                        <source media="(min-width: 800px)" srcSet={singleTour.acf.image_card.sizes.medium_large} />
+                                                        <ImageTourCard src={singleTour.acf.image_card.sizes.medium} alt="hometour" />
+                                                    </picture>
+
+                                                    <InfoHomeTour>
+                                                        <span>{singleTour.acf.price}</span>
+                                                        <h3>{singleTour.acf.title}</h3>
+                                                        <LastInfo>
+                                                            <p>English, Spanish</p>
+                                                            <LinkMoreInfo href={singleTour.link}>+ Info</LinkMoreInfo>
+                                                        </LastInfo>    
+                                                    </InfoHomeTour>
+                                                </Link>
+                                            </TourHomeItem>
+                                        )
+                                    })
+                                
+                                :null
+                            }
+                            </ToursHomeWrap>
+                        </ContainerToursHome>
 
 
                     <WarrantyImageGroup>
+                        {
+                            Object.keys(pageHomeData.acf.images_group).map(elem => {
+                                return (
+                                    <ImageStyleWarranty width={Math.floor((pageHomeData.acf.images_group[elem].sizes["medium-width"])/1.5)} height={Math.floor((pageHomeData.acf.images_group[elem].sizes["medium-height"])/1.5)} src={pageHomeData.acf.images_group[elem].sizes.medium} alt={pageHomeData.acf.images_group[elem].title}/>
+                                )
+                            })
+                        }
                          
-                         <ImageStyleWarranty src={dircetur} />
-                         <ImageStyleWarranty src={greenTourism} />
-                         <ImageStyleWarranty src={marcaPeru} />
-                         <ImageStyleWarranty src={promperu} />
-                         <ImageStyleWarranty src={trip} />
                    
                      </WarrantyImageGroup>
                     
                     </MarginPaddingContainer>                    
 
               
-                    
-                    {/* <MyComponent /> 
-                    <div className="elfsight-app-7ac3bacd-320d-4e47-b93a-1b49d7f53dc7"></div>      */}
-
-                
-                   
-
-
-                   
-                </>
+                    </> 
+                }
             
         </>
      );
@@ -218,7 +278,23 @@ export const ContainerBackground = styled.div`
     margin-top: 2rem;
 
     @media (max-width: 768px){
-        height: 50vh;
+     
+        height: 276px;
+    }
+
+    img {
+        width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+    object-fit: cover;
+
+    @media (max-width: 767px){
+       
+        width: auto;
+        height: 276px;
+    }
     }
 `
 
@@ -252,10 +328,11 @@ export const ImageTag = styled(Image)`
     z-index: -1;
     object-fit: cover;
 
-    @media (max-width: 768px){
-            object-fit: fill;
-            height: 50vh;
-        }
+    @media (max-width: 767px){
+       
+        width: auto;
+        height: 276px;
+    }
 `
   
 /**ABOUT SECTION */
@@ -324,8 +401,9 @@ export const AboutContainer = styled.div`
     justify-content: space-between;
     align-content: center;
     margin-top: 2rem;
-    padding-left: calc(1.5rem/2);
-    padding-right: calc(1.5rem/2);
+    padding:calc(1.5rem/2); ;
+    border: 1px solid gray;
+    border-radius: 5px;
 
     h2 {
         font-size: 1.2rem;
@@ -367,6 +445,8 @@ const FreeTourContainer = styled.div`
         text-align: center;
     }
 
+    margin-top: 5rem;
+    margin-bottom: 5rem;
     padding-left: calc(1.5rem/2);
     padding-right: calc(1.5rem/2);  
 `
@@ -374,18 +454,20 @@ const CardAndTripAdvisor = styled.div`
     display: flex;
     justify-content: space-between;
     align-content: center;
+    margin-top: 2%;
 
     @media (max-width: 950px) {
         flex-direction: column;
+
     } 
 `
 const FreeTourCard = styled.div`
     display: flex;
-    justify-content: flex-start;
-    margin: 2% 2% 0 0;
+    justify-content: first baseline;
+    margin: 0% 2% 0 0;
     box-shadow: 0 .8px 5px .8px grey;
     border-radius: .5rem;
-    flex-basis: 100%;
+    flex-basis: 40%;
 
     @media (max-width: 568px) {
         margin: 1rem;
@@ -393,15 +475,161 @@ const FreeTourCard = styled.div`
         flex-direction: column;
     }
 `
+const DonationBase = styled.div`
+    flex-basis: 30%;
+    /* box-shadow: 0 .8px 5px .8px grey;
+    border-radius: .5rem; */
+    align-self: baseline;
+    text-align: center;
+
+        h3 {
+            padding: 1rem 1rem 0 1rem;
+
+        }
+        p {
+            padding: 0rem 1rem 1rem 1rem;
+            line-height: 1.5;
+            font-size: .8rem;
+        }
+    
+    @media (max-width: 950px) {
+        margin-top: 1rem;
+    } 
+`
 const TripAdvisorCard = styled.div`
+    text-align: center;
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    p {
+        margin: 0;
+     
+        font-size: 1.2rem;
+    }
+
+    a {
+        text-decoration: none;
+        color: #474747;
+        
+    }
+
+    img {
+        object-fit: contain;
+        text-align: center;
+    }
+
+    @media (max-width: 950px) {
+        margin-top: 1rem;
+        flex-basis: 100%;
+    } 
+`
+
+const WriteReviewBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: rgba(17, 17, 17, 0.05);
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    } 
+`
+
+const LeftSideBox = styled.div`
+    span {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        font-size: 1.2rem;
+    }
+`
+
+const MyStars = styled.div`
     display: flex;
     justify-content: center;
-    text-align: center;
-  
-    @media (max-width: 950px) {
+    align-content: center;
+
+    h3 {
+        margin: 0 auto;
+        padding: 0 auto;
+        font-size: 1.2rem;
+    }
+
+    span {
+        margin: 0 auto;
+        padding: 0 auto;
+        font-size: 1.2rem;
+        color: rgb(252, 191, 2) !important;
+    }
+`
+const ImageReviewBox = styled(Image)`
+    object-fit: contain;
+`
+const ButtonWriteReview = styled.a`
+    text-decoration: none;
+    background-color: rgb(25, 123, 255);
+    color: rgb(255, 255, 255);
+    align-self: center;
+    border: 4px solid rgba(0, 0, 0, 0);
+    padding: .5rem;
+    border-radius: 2px;
+    font-size: 1rem;
+    cursor: pointer;
+`
+const TripAdvisorReviews = styled.div`
+    display: flex;
+
+    @media (max-width: 768px) {
+        padding: 1rem;
         flex-direction: column;
-        margin-left: 2rem;
     } 
+`
+
+const ReviewItem = styled.div`
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: rgba(17, 17, 17, 0.05);
+    flex-basis: 25%;
+
+    h3 {
+        font-size: 1rem;
+        color: #333333;
+        margin-bottom: 0;
+        line-height: 1.5;
+        margin-top: .5rem;
+    }
+
+    h4 {
+        font-size: .9rem;
+        color: #333333;
+        margin-bottom: 0;
+    }
+
+    span {
+    
+        :nth-of-type(1){
+            font-size: 1.2rem;
+            color: rgb(252, 191, 2) !important
+        }
+
+        :nth-of-type(2) {
+            font-size: .8rem;
+            color: #333333;
+            margin-left: 1rem;
+        }
+    }
+    p {
+        margin: 0;
+        font-size: .9rem;
+        line-height: 1.5;
+    }
 `
 
 export const InfoFreeTour = styled.div`
@@ -427,7 +655,8 @@ export const InfoFreeTour = styled.div`
         justify-content: flex-start;
 
         span {
-            color:#3A6F84;
+            //color:#3A6F84;
+            color: #333333;
             font-weight: bold;
             margin-right:1rem;
         }
@@ -483,13 +712,17 @@ export const ImageTourStyled = styled(Image)`
 
 /**HOME TOURS STYLES */
 
+const ContainerToursHome = styled.div`
+        margin: 4rem 0;
+`
+
 export const ToursHomeWrap = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
     background-color: #fff;
     color: #444;
-    margin: 4rem 0;
+
 
     padding-left: calc(1.5rem/2);
     padding-right: calc(1.5rem/2);
@@ -533,7 +766,7 @@ export const InfoHomeTour = styled.div`
     h3{
         color: #484848;
         margin: .5rem 0;
-        font-size: 2vh;
+        font-size: 1.8vh;
 
         @media (max-width: 768px) {
             font-size: 2.5vh;
@@ -550,6 +783,24 @@ export const InfoHomeTour = styled.div`
             font-size: 2vh;
         } 
     }
+
+    li {
+        color: #484848;
+        text-transform: capitalize;
+
+        font-size: 2vh;
+
+            @media (max-width: 768px) {
+                font-size: 2vh;
+            } 
+    }
+
+`
+
+export const LastInfo = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
 `
 
 export const ImageTourCard = styled(Image)`
@@ -572,9 +823,14 @@ const WarrantyImageGroup = styled.div`
     align-content: center;
     padding-left: calc(1.5rem/2);
     padding-right: calc(1.5rem/2);
+
+    @media (max-width: 767px) {
+        flex-direction: column;
+    } 
 `
 
 const ImageStyleWarranty = styled(Image)`
-    width: 140px;
-    height: 120px;
+    align-self: center;
+    object-fit: contain;
+
 `

@@ -1,16 +1,43 @@
 import React, {useEffect} from 'react';
 import { Head, connect, Global, css, styled } from "frontity";
 import Header from './components/header/header'
-import Home from './components/home';
+// import Home from './components/home';
+// import Tours from './components/tours';
+// import MPTours from './components/MachuTours';
+// import AdventureTours from './components/AdventureTours'
+// import TrekkingTour from './components/TrekkingTour'
+// import Guides from './components/guides';
+// import Faqs from './components/faqs';
+// import GeneralContact from './components/GeneralContact';
+// import TourDetails from './components/ToursDetails';
+import InfoFooter from './components/InfoFooter'
 import Footer from './components/footer';
-import Tours from './components/tours';
-import Guides from './components/guides';
-import Faqs from './components/faqs';
-import GeneralContact from './components/GeneralContact';
-import TourDetails from './components/ToursDetails';
 
+//Loadable components
+import { loadable } from "frontity";
 
-import Script from "@frontity/components/script";
+const Home = loadable(() => import('./components/home'));
+const Tours = loadable(() => import('./components/tours.js'));
+const MPTours = loadable(() => import('./components/MachuTours'));
+const AdventureTours = loadable(() => import('./components/AdventureTours'));
+const TrekkingTour = loadable(() => import('./components/TrekkingTour'));
+const Guides = loadable(() => import('./components/guides'));
+const Faqs = loadable(() => import('./components/faqs'));
+const GeneralContact = loadable(() => import('./components/GeneralContact'));
+const TourDetails = loadable(() => import('./components/ToursDetails') );
+const AmazonTours = loadable(() => import('./components/AmazonTrips.js'));
+
+import LatoLight from './google-fonts/S6u9w4BMUTPHh7USSwaPGQ3q5d0N7w.woff2'
+import LatoLight2 from './google-fonts/S6u9w4BMUTPHh7USSwiPGQ3q5d0.woff2'
+import LatoRegular from './google-fonts/S6uyw4BMUTPHjxAwXiWtFCfQ7A.woff2';
+import LatoRegular2 from './google-fonts/S6uyw4BMUTPHjx4wXiWtFCc.woff2';
+import LatoBold from './google-fonts/S6u9w4BMUTPHh6UVSwaPGQ3q5d0N7w.woff2';
+import LatoBold2 from './google-fonts/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2';
+import MontserratCyrrilicExt from './google-fonts/JTUSjIg1_i6t8kCHKm459WRhyyTh89ZNpQ.woff2'
+import MontserratCyrrilic from './google-fonts/JTUSjIg1_i6t8kCHKm459W1hyyTh89ZNpQ.woff2'
+import MontserratVietnamese from './google-fonts/JTUSjIg1_i6t8kCHKm459WZhyyTh89ZNpQ.woff2'
+import MontserratLatinExt from './google-fonts/JTUSjIg1_i6t8kCHKm459WdhyyTh89ZNpQ.woff2'
+import MontserratLatin from './google-fonts/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2';
 
 const Root = ({state, actions}) => {
 
@@ -34,6 +61,209 @@ const Root = ({state, actions}) => {
                         --white: #ffffff;
                         --bodycolor: #343434;
                     }
+
+                    /* latin-ext */
+                    @font-face {
+                        font-family: 'Lato';
+                        font-style: normal;
+                        font-weight: 300;
+                        font-display: swap;
+                        src: url(${LatoLight}) format('woff2');
+                        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+                    }
+
+                      /* latin */
+                    @font-face {
+                        font-family: 'Lato';
+                        font-style: normal;
+                        font-weight: 300;
+                        font-display: swap;
+                        src: url(${LatoLight2}) format('woff2');
+                        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+                    }
+
+                      /* latin-ext */
+                    @font-face {
+                        font-family: 'Lato';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-display: swap;
+                        src: url(${LatoRegular}) format('woff2');
+                        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+                    }
+
+                     /* latin */
+                    @font-face {
+                        font-family: 'Lato';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-display: swap;
+                        src: url(${LatoRegular2}) format('woff2');
+                        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+                    }
+
+                      /* latin-ext */
+                    @font-face {
+                        font-family: 'Lato';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url(${LatoBold}) format('woff2');
+                        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+                    }
+
+                      /* latin */
+                    @font-face {
+                        font-family: 'Lato';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url(${LatoBold2}) format('woff2');
+                        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+                    }
+
+                      /* cyrillic-ext */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 300;
+                        font-display: swap;
+                        src: url(${MontserratCyrrilicExt}) format('woff2');
+                        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+                    }
+
+                    /* cyrillic */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 300;
+                        font-display: swap;
+                        src: url(${MontserratCyrrilic}) format('woff2');
+                        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+                    }
+
+                      /* vietnamese */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 300;
+                        font-display: swap;
+                        src: url(${MontserratVietnamese}) format('woff2');
+                        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+                    }
+
+                      /* latin-ext */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 300;
+                        font-display: swap;
+                        src: url(${MontserratLatinExt}) format('woff2');
+                        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+                    }
+
+                      /* latin */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 300;
+                        font-display: swap;
+                        src: url(${MontserratLatin}) format('woff2');
+                        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+                    }
+
+                                        /* cyrillic-ext */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-display: swap;
+                        src: url(${MontserratCyrrilicExt}) format('woff2');
+                        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+                    }
+                    /* cyrillic */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-display: swap;
+                        src: url(${MontserratCyrrilic}) format('woff2');
+                        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+                    }
+                    /* vietnamese */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-display: swap;
+                        src: url(${MontserratVietnamese}) format('woff2');
+                        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+                    }
+                    /* latin-ext */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-display: swap;
+                        src: url(${MontserratLatinExt}) format('woff2');
+                        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+                    }
+                    /* latin */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-display: swap;
+                        src: url(${MontserratLatin}) format('woff2');
+                        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+                    }
+                    /* cyrillic-ext */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url(${MontserratCyrrilicExt}) format('woff2');
+                        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+                    }
+                    /* cyrillic */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url(${MontserratCyrrilic}) format('woff2');
+                        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+                    }
+                    /* vietnamese */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url(${MontserratVietnamese}) format('woff2');
+                        unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+                    }
+                    /* latin-ext */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url(${MontserratLatinExt}) format('woff2');
+                        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+                    }
+                    /* latin */
+                    @font-face {
+                        font-family: 'Montserrat';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-display: swap;
+                        src: url(${MontserratLatin}) format('woff2');
+                        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+                    }
+  
+
                     body {
                         margin: 0;
                         font-family: 'Montserrat', sans-serif;
@@ -55,22 +285,26 @@ const Root = ({state, actions}) => {
             />
 
             <Head>
-                <link rel="preconnect" href="https://fonts.gstatic.com" />
-                <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/> 
-                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-                <title>Free Walking Tours | Book the best Free Walking tour in Cusco</title>
-                <meta name="description" content="Book your spot on top-quality free tours and budget activities with local guides. Friendly, knowledgeable and three unique local walking tours in Cusco" />
+
+                <title>Free Walking Tour Cusco - Free Walking Tours in English</title>
+                <meta name="description" content="Book the best Free Walking Tour Cusco and other on budget activities with local guides. Friendly, knowledgeable and three unique local free walking tours in Cusco" />
                 <html lang="en" />
+                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
             </Head>
 
             <Header />
 
             {data.isHomePage && <Home /> }
             {state.router.link === "/tours/" && <Tours />}
-            {(data.isAlltours || data.isHomeTours)  && <TourDetails />}
+            {state.router.link === "/machupicchu/" && <MPTours />}
+            {state.router.link === "/trekking/" && <TrekkingTour />}
+            {state.router.link === "/adventure/" && <AdventureTours />}
+            {state.router.link === "/amazon/" && <AmazonTours />}
+            {(data.isAlltours || data.isMptours || data.isAdventuretours || data.isHikingtours || data.isAmazontours)  && <TourDetails />}
             {data.isGuides && <Guides />}
             {state.router.link === "/faqs/" && <Faqs />}
             {state.router.link === "/contact/" && <GeneralContact />}
+            <InfoFooter />
             <Footer title= "Wild Free Walking Tours" />    
       </>
     );

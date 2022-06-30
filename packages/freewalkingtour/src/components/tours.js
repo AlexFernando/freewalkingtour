@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Global, connect, styled, css } from "frontity";
 import LinkButtonHomeSecond from './LinkButtonHomeSecond';
 import Image from "@frontity/components/image";
-import {ContainerBackground, ImageTag, TextContainer} from './home';
+import {ContainerBackground, ImageTag, TextContainer, LastInfo} from './home';
 
 //icons
 import { IconContext } from "react-icons";
@@ -11,6 +11,7 @@ import {BiMoney} from 'react-icons/bi';
 
 import Loading from './Loading';
 import Link from './Link';
+import LinkMoreInfo from './LinkMoreInfo'
 
 const Tours = ({state, actions, libraries}) => {
 
@@ -36,6 +37,8 @@ const Tours = ({state, actions, libraries}) => {
     const Html2react = libraries.html2react.Component;
 
     return ( 
+        <>
+        {data.isReady ?
         <>           
         {typeof pageAllTours === "undefined" ? <Loading /> : 
         <>
@@ -68,6 +71,7 @@ const Tours = ({state, actions, libraries}) => {
 
                     <ToursWrap>
                         {
+                            
                             tours.reverse().map( tour => {
                                 return (
                                     <Link href={tour.link}>
@@ -95,6 +99,8 @@ const Tours = ({state, actions, libraries}) => {
                                             </div>  
 
                                             <p>{tour.acf.description}</p>
+
+                                            <LinkMoreInfo href={tour.link}>+ Info</LinkMoreInfo>
                                             
                                         </InfoTour>
 
@@ -107,32 +113,12 @@ const Tours = ({state, actions, libraries}) => {
                         }
                     </ToursWrap>
 
-                    :null
+                    : <Loading />
                 }
 
 
 
                     <Content>
-                        {/* <MyTripAdvisorScript />
-                        <div id="TA_selfserveprop784" className="TA_selfserveprop">
-                            <ul id="6nnnBN" className="TA_links s34mseFEVkfp">
-                                <li id="Ce8V1Q5Nxs6" className="b4h0pQgouG">
-                                    <a target="_blank" href="https://www.tripadvisor.com/Attraction_Review-g294314-d14803688-Reviews-Wild_Peru_Travel-Cusco_Cusco_Region.html">
-                                        <img src="https://www.tripadvisor.com/img/cdsi/img2/branding/v2/Tripadvisor_lockup_horizontal_secondary_registered-11900-2.svg" alt="TripAdvisor"/>
-                                        <div id="TA_selfserveprop784" className="TA_selfserveprop">
-                                            <ul id="6nnnBN" className="TA_links s34mseFEVkfp">
-                                                <li id="Ce8V1Q5Nxs6" className="b4h0pQgouG">
-                                                <a target="_blank" href="https://www.tripadvisor.com/Attraction_Review-g294314-d14803688-Reviews-Wild_Peru_Travel-Cusco_Cusco_Region.html">
-                                                    <img src="https://www.tripadvisor.com/img/cdsi/img2/branding/v2/Tripadvisor_lockup_horizontal_secondary_registered-11900-2.svg" alt="TripAdvisor"/>
-                                                </a>
-                                                </li>
-                                                </ul>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div> */}
-
                         <Html2react html={pageAllTours.content.rendered} />
                     </Content>
                   
@@ -144,6 +130,9 @@ const Tours = ({state, actions, libraries}) => {
 
         </>
         }
+        </>
+
+        : <Loading />}
         </>
      );
 }
@@ -351,7 +340,6 @@ export const Content = styled.div`
     align-items: center;
     font-size: 1.5rem;
 
-
     @media(max-width: 768px) {
         flex-direction: column;
         justify-content: space-around;
@@ -374,7 +362,6 @@ export const Content = styled.div`
         padding: 1rem 3rem 1rem 2rem;
         margin: 1rem 0rem;
 
-
         @media(max-width: 768px) {
             iframe {
                 width: 100%;
@@ -396,8 +383,6 @@ export const Content = styled.div`
         padding:10px;
         margin:10px 0; 
         border: 1px solid rgba(97, 97, 97, 0.7);
-        
-        //box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
         border-radius:5px;
         width:100%;
         font-family:inherit;
@@ -433,7 +418,6 @@ export const Content = styled.div`
 
         @media(max-width: 768px) {
             width: 100%;
-            
         }
     
         &:hover {

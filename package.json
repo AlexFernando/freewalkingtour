@@ -25,6 +25,7 @@
     "@frontity/wp-source": "^1.11.7",
     "freewalkingtour": "file:packages/freewalkingtour",
     "frontity": "^1.17.2",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "react-slideshow-image": "^3.7.5"
   }
 }

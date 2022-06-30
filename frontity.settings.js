@@ -14,12 +14,12 @@ const settings = {
         "theme": {
           "menu": [
             ["About", "/"],
-            ["Tours", "/tours/"],
+            ["1 Day Tours", "/tours/"],
             ["Guides", "/guides/"],
             ["Trekking/Hiking", "/trekking/"],
             ["Adventure", "/adventure/"],
-            ["Bike Tours", "/biketours/"],
             ["Machu Picchu", "/machupicchu/"],
+            ["Amazon Tours", "/amazon/"],
             ["FAQ's", "/faqs/"],        
             ["Contact", "/contact/"]
           ],
@@ -44,17 +44,42 @@ const settings = {
 
           "postTypes": [
             {
+              type: "adventuretours",
+              endpoint: "adventuretours",
+              archive: "adventuretours",
+            },
+            {
               type: "alltours",
               endpoint: "alltours",
               archive: "alltours",
             },
 
             {
-              type: "hometours",
-              endpoint: "hometours",
-              archive: "hometours",
-            }
+              type: "mptours",
+              endpoint: "mptours",
+              archive: "mptours",
+            },
+
+            {
+              type: "hikingtours",
+              endpoint: "hikingtours",
+              archive: "hikingtours",
+            },
+
+            {
+              type: "amazontours",
+              endpoint: "amazontours",
+              archive: "amazontours",
+            },
           ],
+
+          "taxonomies": [
+            {
+              taxonomy: "category",
+              endpoint: "categories",
+              postTypeEndpoint: "alltours",
+            },
+          ]
         }
       }
     },

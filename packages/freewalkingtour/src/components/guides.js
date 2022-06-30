@@ -7,6 +7,9 @@ import { MarginPaddingContainer, HeaderContainer, Title, Separator } from './hom
 
 import guideOne from '../images/diego1.jpeg'
 import guidTwo from '../images/frank.jpg'
+import guideThree from '../images/isaias.jpeg'
+import guideFour from '../images/bruce.jpeg'
+
 
 const Guides = ({state, actions, libraries}) => {
 
@@ -40,6 +43,37 @@ const Guides = ({state, actions, libraries}) => {
                                         I’m local professional tour guide. I’m a passionate about my background, that’s why I studied tourism, I’ve been living all my life in Cusco. 
                                         I love history , archeology, music ,travelling and gastronomy. If you want to know the history of my hometown, 
                                         I’m willing to take you in a 2h - 2h30 Free walking tour , where you will have unforgettable journey.                                    
+                                    </p>
+                                    <small>Official Local Guide - Wild Free Walking Tours</small>
+                                </div>
+                       
+                            </GuideCard>
+
+                            <GuideCard>
+
+                                <ImageDescriptionContainer src={guideThree} />
+                                <div>
+                                    <h3>ISAIAS VALDIVIA</h3>
+                                    <p>
+                                        Hi, my name is Isaias, I studied tourism in a local university in Cusco. I love history and culture of my city and even more I love sharing my knowledge 
+                                        with all our visitors , in that way, you can have a unique experience and the opportunity to know the magnificent history of Cusco. 
+                                        Working as a guide at Wild Free Walking Tour Cusco is a great experience, that allows me to explore the living history of this city.
+                                    </p>
+                                    <span>Official Local Guide - Wild Free Walking Tours</span>
+                                </div>
+                            </GuideCard>
+
+                            <GuideCard>
+                                <ImageDescriptionContainer src={guideFour} />
+                                <div>
+                                    <h3>BRUCE ORTEGA</h3>
+                                    <p>
+                                        My name is BRUCE. I’ve traveled through South America as a backpacker and sometimes as tour conductor for 5 years; 
+                                        then I decided to settle down in cusco to rest of travelling, I started to studying the career called: Official Tour Guided, 
+                                        and I love it, so I’ve decide to stay in Cusco. I graduated as a tour guide, I’m fun, charm, helpful, reliable, self confident, 
+                                        shameless, open-minded, ecologist, minimalist, friendy ,philanthropist, well informed about national and international news. 
+                                        I am into history, economy, politics, sociology, anthropology, spirituality ,literature and philosophy. 
+                                        In my free walking tour I will share all my knowledge with you in a fluent English.                                   
                                     </p>
                                     <small>Official Local Guide - Wild Free Walking Tours</small>
                                 </div>
