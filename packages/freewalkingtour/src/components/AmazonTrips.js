@@ -46,9 +46,9 @@ const MPTours = ({state, actions, libraries}) => {
             <ContainerBackgroundTour>
 
                 <ImageTag
-                    src="https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled.jpg"
-                    srcSet="https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled-768x471.jpg 750w,
-                            https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled.jpg 2048w"
+                    src="https://walkingtours.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled.jpg"
+                    srcSet="https://walkingtours.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled-768x471.jpg 750w,
+                            https://walkingtours.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled.jpg 2048w"
                     width="2048"
                     height="1536"
                     alt="landscape"

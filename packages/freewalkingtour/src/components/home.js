@@ -11,6 +11,13 @@ import { BsFillArrowDownCircleFill} from 'react-icons/bs';
 import ReadMore from '../helpers/ReadMore';
 import LinkMoreInfo from './LinkMoreInfo'
 
+//images 
+// import smallBg from '../images/background_image_scaled-768x471.webp';
+// import mediumBg from '../images/background_image_scaled-1536x941.webp';
+// import bigBg from '../images/background_image_scaled.webp'
+// import smallTshirt from '../images/shirt-300x273.webp';
+// import normalSizeTshirt from '../images/shirt.webp';
+
 const Home = ({state, actions, libraries}) => {
 
     useEffect(() => {
@@ -24,6 +31,8 @@ const Home = ({state, actions, libraries}) => {
 
     const pageHomeData = state.source.page[10];
 
+    const Html2react = libraries.html2react.Component;
+
     return ( 
         <>     
                 {typeof pageHomeData === "undefined" ? <Loading /> :     
@@ -31,16 +40,26 @@ const Home = ({state, actions, libraries}) => {
                     <ContainerBackground>
 
                         <picture>
-                            <source media="(max-width: 767px)" srcSet="https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled-768x471.jpg" />
-                            <source media="(max-width: 1599px)" srcSet="https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled-1536x941.jpg" />
-                            <source media="(max-width: 2048px)" srcSet="https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled.jpg" />
+                            <source media="(max-width: 767px)" srcSet="https://walkingtours2024.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled-768x471.jpg" />
+                            <source media="(max-width: 1599px)" srcSet="https://walkingtours2024.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled-1536x941.jpg" />
+                            <source media="(max-width: 2048px)" srcSet="https://walkingtours2024.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled.jpg" />
 
                             <ImageTag
-                                src="https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled-768x471.jpg" alt="background cover" width="1800" height="1103"
+                                src="https://walkingtours2024.wildfreewalkingtours.com/wp-content/uploads/2022/05/background_image_scaled-768x471.jpg" alt="background cover" width="1800" height="1103"
                             />
                         </picture>
 
                         
+                        {/* <picture>
+                            <source media="(max-width: 767px)" srcSet={smallBg} />
+                            <source media="(max-width: 1599px)" srcSet={mediumBg} />
+                            <source media="(max-width: 2048px)" srcSet={bigBg} />
+
+                            <ImageTag
+                                src={smallBg} alt="background cover" width="1800" height="1103"
+                            />
+                        </picture> */}
+
                         <TextContainer>
                             <h1>  WILD FREE WALKING TOURS CUSCO - <span>Guided by Locals</span> </h1>
                         </TextContainer>
@@ -64,10 +83,16 @@ const Home = ({state, actions, libraries}) => {
                                 <div>
 
                                 <picture>
-                                    <source media="(max-width: 799px)" srcSet="https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/shirt-300x273.png" />
-                                    <source media="(min-width: 800px)" srcSet="https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/shirt.png"/>
-                                    <ImageShirt src="https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/shirt.png" alt="orange_t-shirt" />
+                                    <source media="(max-width: 799px)" srcSet="https://walkingtours2024.wildfreewalkingtours.com/wp-content/uploads/2022/05/shirt-300x273.png" />
+                                    <source media="(min-width: 800px)" srcSet="https://walkingtours2024.wildfreewalkingtours.com/wp-content/uploads/2022/05/shirt.png"/>
+                                    <ImageShirt src="https://walkingtours2024.wildfreewalkingtours.com/wp-content/uploads/2022/05/shirt.png" alt="orange_t-shirt" />
                                 </picture>
+
+                                {/* <picture>
+                                    <source media="(max-width: 799px)" srcSet={smallTshirt} />
+                                    <source media="(min-width: 800px)" srcSet={normalSizeTshirt}/>
+                                    <ImageShirt src={normalSizeTshirt} alt="orange_t-shirt" />
+                                </picture> */}
                                 </div>
                                 <h2>Don't get confused by others groups</h2>
                             </div>
@@ -159,6 +184,11 @@ const Home = ({state, actions, libraries}) => {
                                 </TripAdvisorCard>
                             </CardAndTripAdvisor>
                         </FreeTourContainer>
+
+                        <Content>
+                            
+                            <Html2react html={pageHomeData.content.rendered} />
+                        </Content>
                         
                         <WriteReviewBox>
                             <LeftSideBox>
@@ -496,6 +526,34 @@ const DonationBase = styled.div`
         margin-top: 1rem;
     } 
 `
+
+/**Styles meeting point content rendered */
+const Content = styled.div`
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    padding-bottom: 4rem;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding-right: 1rem;
+        padding-left: 1rem;
+    } 
+
+    .wp-block-group {
+        flex-basis: 40%;
+
+        @media (max-width: 768px) {
+            flex-basis: 100%;
+            width: 100%;
+        } 
+    }
+
+`
+
+/**Finish styles meeting point */
+
 const TripAdvisorCard = styled.div`
     text-align: center;
     flex-basis: 30%;

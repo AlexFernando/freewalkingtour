@@ -22,11 +22,11 @@ const Theme = ({ state }) => {
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
-      <Title />
+      {/* <Title />
       <Head>
         <meta name="description" content={state.frontity.description} />
         <html lang="en" />
-      </Head>
+      </Head> */}
 
       {/* Add some global styles for the whole site, like body or a's. 
       Not classes here because we use CSS-in-JS. Only global HTML tags. */}

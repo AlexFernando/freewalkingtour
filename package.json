@@ -7,7 +7,7 @@
     "frontity"
   ],
   "engines": {
-    "node": ">=10.0.0",
+    "node": "12.x",
     "npm": ">=6.0.0"
   },
   "scripts": {
@@ -23,6 +23,8 @@
     "@frontity/mars-theme": "./packages/mars-theme",
     "@frontity/tiny-router": "^1.4.4",
     "@frontity/wp-source": "^1.11.7",
+    "@loadable/component": "^5.15.2",
+    "@loadable/server": "^5.15.2",
     "freewalkingtour": "file:packages/freewalkingtour",
     "frontity": "^1.17.2",
     "react-icons": "^4.3.1",

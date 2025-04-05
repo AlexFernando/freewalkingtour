@@ -15,7 +15,7 @@ const Header = ({ state }) => {
       <BrandContainer>
         <StyledLink link="/">
 
-          <ImageStyled alt="logo" src={'https://freewalking.wildfreewalkingtours.com/wp-content/uploads/2022/05/logo.png'} />
+          <ImageStyled alt="logo" src={'https://walkingtours2024.wildfreewalkingtours.com/wp-content/uploads/2022/05/logo.png'} />
          
         </StyledLink>
         
@@ -25,7 +25,7 @@ const Header = ({ state }) => {
 
       <SocialMediaSuperior>
           <li>
-            <a href="https://wa.me/+51974773203" alt="WhatsApp" aria-label="Link to WhatsApp" target="_blank" rel="noreferrer">
+            <a href="https://wa.me/+51945160616" alt="WhatsApp" aria-label="Link to WhatsApp" target="_blank" rel="noreferrer">
               <IconContext.Provider value={{ color: "black", className: "global-class-name", size: "2rem" } }>
                 <FaWhatsapp />
               </IconContext.Provider>

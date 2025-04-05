@@ -14,7 +14,7 @@ const InfoFooter = () => {
                     <li>
                         <a href="https://wa.me/+51974773203" alt="WhatsApp" aria-label="Link to WhatsApp" target="_blank" rel="noreferrer">
                         <IconContext.Provider value={{ color: "white", className: "global-class-name", size: "2rem" } }>
-                            <FaWhatsapp /> <span>+51 974773203</span>
+                            <FaWhatsapp /> <span>+51 945160616</span>
                         </IconContext.Provider>
                         </a>
                     </li>

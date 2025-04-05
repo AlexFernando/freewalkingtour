@@ -36,7 +36,7 @@ const Title = ({ state }) => {
 
   return (
     <Head>
-      <title>{title}</title>
+      {/* <title>{title}</title> */}
     </Head>
   );
 };

@@ -2,9 +2,9 @@ const settings = {
   "name": "wildfreewalking",
   "state": {
     "frontity": {
-      "url": "https://freewalking.wildfreewalkingtours.com",
-      "title": "Wild Free Walking Tours | Best Tour Guides in Town",
-      "description": "Best free walking tour in Cusco. You will be provided with high standar tour with historical knowledge, tips and advices to make worth your stay in Cusco"
+      "url": "https://walkingtours2024.wildfreewalkingtours.com",
+      "title": "Free Walking Tour Cusco - San Pedro Market",
+      "description": "Wild free walking tour Cusco is operated by a 100% local company, we have been working in Cusco for 3 years now, and We are recognize as one of the best Free Walking Tours in Cusco.."
     }
   },
   "packages": [
@@ -36,7 +36,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "api": "https://freewalking.wildfreewalkingtours.com/wp-json/",
+          "api": "https://walkingtours2024.wildfreewalkingtours.com//wp-json/",
 
           "params": {
             per_page: 100,

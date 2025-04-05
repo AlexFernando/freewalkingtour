@@ -285,9 +285,8 @@ const Root = ({state, actions}) => {
             />
 
             <Head>
-
-                <title>Free Walking Tour Cusco - Free Walking Tours in English</title>
-                <meta name="description" content="Book the best Free Walking Tour Cusco and other on budget activities with local guides. Friendly, knowledgeable and three unique local free walking tours in Cusco" />
+                <title>{state.frontity.title}</title>
+                <meta name="description" content={state.frontity.description} />
                 <html lang="en" />
                 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
             </Head>
